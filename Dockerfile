@@ -3,7 +3,7 @@ MAINTAINER codecounter<codecounter@126.com>
 
 # install php7
 RUN apt-get update && \
-    apt-get install python-software-properties software-properties-common && \
+    apt-get install python-software-properties software-properties-common -y && \
     LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php && \
     apt-get update && \
     apt-get install php7.0 php7.0-fpm php7.0-mysql -y && \
