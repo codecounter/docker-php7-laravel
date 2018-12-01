@@ -18,8 +18,9 @@ RUN cd / && \
     mv /composer.phar /usr/local/bin/composer
 
 # install phpunit
-RUN wget -O phpunit https://phar.phpunit.de/phpunit-7.phar && \
-    mv phpunit /usr/local/bin/phpunit && \
+RUN cd / && \
+    php -r "copy('https://phar.phpunit.de/phpunit-7.phar', '/phpunit.phar');" && \
+    mv /phpunit.phar /usr/local/bin/phpunit && \
     chmod +x /usr/local/bin/phpunit
 
 CMD ["/bin/bash"]
