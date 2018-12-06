@@ -23,4 +23,15 @@ RUN cd / && \
     mv /phpunit.phar /usr/local/bin/phpunit && \
     chmod +x /usr/local/bin/phpunit
 
+# install phpcs and phpcbf
+RUN cd / && \
+    php -r "copy('https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar', '/phpcs.phar');" && \
+    mv /phpcs.phar /usr/local/bin/phpcs && \
+    chmod +x /usr/local/bin/phpcs
+
+RUN cd / && \
+    php -r "copy('https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar', '/phpcbf.phar');" && \
+    mv /phpcbf.phar /usr/local/bin/phpcbf && \
+    chmod +x /usr/local/bin/phpcbf
+    
 CMD ["/bin/bash"]
