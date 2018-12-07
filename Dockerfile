@@ -1,13 +1,19 @@
 FROM ubuntu:trusty
 MAINTAINER codecounter<codecounter@126.com>
 
+# install base
+RUN apt-get install curl
+
 # install php7
 RUN apt-get update && \
     apt-get install python-software-properties software-properties-common -y && \
     LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php && \
     apt-get update && \
     apt-get install php7.1 php7.1-fpm php7.1-mysql -y && \
-    apt-get install php7.1-mbstring php7.1-xml php7.1-zip -y
+    apt-get install php7.1-mbstring php7.1-xml php7.1-zip php7.1-dev -y && \
+    pecl install xdebug-2.6.1 && \
+    echo "zend_extension=/usr/lib/php/20160303/xdebug.so" >> /etc/php/7.1/cli/php.ini && \
+    echo "zend_extension=/usr/lib/php/20160303/xdebug.so" >> /etc/php/7.1/fpm/php.ini
     
 # install composer
 RUN cd / && \
